@@ -1,0 +1,175 @@
+{
+  "info": {
+    "name": "Course Management System API",
+    "_postman_id": "c61b2390-3498-4c3e-8120-001courseapi",
+    "description": "Standard CRUD Postman Collection for Course Management System following Academic SOP guidelines.\nBase URL: http://localhost:3000/api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Add New Course (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"course_code\": \"CS101\",\n  \"course_name\": \"Introduction to Python Programming\",\n  \"description\": \"Comprehensive foundation in Python syntax, data structures, and computational problem solving.\",\n  \"instructor\": \"Dr. Kumar\",\n  \"department\": \"Computer Science\",\n  \"category\": \"Computer Science\",\n  \"duration\": 12,\n  \"duration_unit\": \"Weeks\",\n  \"credits\": 4,\n  \"fee\": 5000.00,\n  \"level\": \"Beginner\",\n  \"start_date\": \"2026-10-01\",\n  \"end_date\": \"2026-12-24\",\n  \"max_students\": 40,\n  \"status\": \"Upcoming\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/courses/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "courses", ""]
+        },
+        "description": "Creates a new course entity in SQLite database. Validates all required fields, positive constraints, date sequence, and unique course code."
+      },
+      "response": [
+        {
+          "name": "201 Created Response",
+          "status": "Created",
+          "code": 201,
+          "body": "{\n  \"id\": 1,\n  \"course_code\": \"CS101\",\n  \"course_name\": \"Introduction to Python Programming\",\n  \"description\": \"Comprehensive foundation in Python syntax, data structures, and computational problem solving.\",\n  \"instructor\": \"Dr. Kumar\",\n  \"department\": \"Computer Science\",\n  \"category\": \"Computer Science\",\n  \"duration\": 12,\n  \"duration_unit\": \"Weeks\",\n  \"credits\": 4,\n  \"fee\": 5000.0,\n  \"level\": \"Beginner\",\n  \"start_date\": \"2026-10-01\",\n  \"end_date\": \"2026-12-24\",\n  \"max_students\": 40,\n  \"status\": \"Upcoming\",\n  \"created_at\": \"2026-09-17T05:22:00.000Z\",\n  \"updated_at\": \"2026-09-17T05:22:00.000Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "2. Get All Courses (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/courses/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "courses", ""]
+        },
+        "description": "Retrieves all courses ordered by latest ID. Supports filtering via ?search=, ?department=, ?category=, ?level=, ?status=."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "status": "OK",
+          "code": 200,
+          "body": "[\n  {\n    \"id\": 1,\n    \"course_code\": \"CS101\",\n    \"course_name\": \"Introduction to Python Programming\",\n    \"instructor\": \"Dr. Kumar\",\n    \"department\": \"Computer Science\",\n    \"category\": \"Computer Science\",\n    \"duration\": 12,\n    \"duration_unit\": \"Weeks\",\n    \"credits\": 4,\n    \"fee\": 5000.0,\n    \"level\": \"Beginner\",\n    \"start_date\": \"2026-10-01\",\n    \"end_date\": \"2026-12-24\",\n    \"max_students\": 40,\n    \"status\": \"Upcoming\"\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "3. Get Course by ID (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/courses/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "courses", "1", ""]
+        },
+        "description": "Retrieves comprehensive information for course with ID 1. Returns 404 if ID does not exist."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"id\": 1,\n  \"course_code\": \"CS101\",\n  \"course_name\": \"Introduction to Python Programming\",\n  \"description\": \"Comprehensive foundation in Python syntax, data structures, and computational problem solving.\",\n  \"instructor\": \"Dr. Kumar\",\n  \"department\": \"Computer Science\",\n  \"category\": \"Computer Science\",\n  \"duration\": 12,\n  \"duration_unit\": \"Weeks\",\n  \"credits\": 4,\n  \"fee\": 5000.0,\n  \"level\": \"Beginner\",\n  \"start_date\": \"2026-10-01\",\n  \"end_date\": \"2026-12-24\",\n  \"max_students\": 40,\n  \"status\": \"Upcoming\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Update Course Full (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"course_code\": \"CS101\",\n  \"course_name\": \"Introduction to Python & Data Analysis\",\n  \"description\": \"Updated syllabus with data science modules.\",\n  \"instructor\": \"Dr. Kumar\",\n  \"department\": \"Computer Science\",\n  \"category\": \"Data Science\",\n  \"duration\": 14,\n  \"duration_unit\": \"Weeks\",\n  \"credits\": 4,\n  \"fee\": 6000.00,\n  \"level\": \"Intermediate\",\n  \"start_date\": \"2026-10-01\",\n  \"end_date\": \"2027-01-10\",\n  \"max_students\": 45,\n  \"status\": \"Active\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/courses/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "courses", "1", ""]
+        },
+        "description": "Full replacement update for course record with primary key 1."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"id\": 1,\n  \"course_code\": \"CS101\",\n  \"course_name\": \"Introduction to Python & Data Analysis\",\n  \"fee\": 6000.0,\n  \"status\": \"Active\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Partial Update Course (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fee\": 5500.00,\n  \"status\": \"Active\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/courses/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "courses", "1", ""]
+        },
+        "description": "Partial update modifying only fee and status fields."
+      },
+      "response": [
+        {
+          "name": "200 OK Response",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"id\": 1,\n  \"course_code\": \"CS101\",\n  \"fee\": 5500.0,\n  \"status\": \"Active\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "6. Delete Course (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/courses/1/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "courses", "1", ""]
+        },
+        "description": "Permanently deletes course with primary key 1 from SQLite database. Returns 204 No Content on success, 404 if course not found."
+      },
+      "response": [
+        {
+          "name": "204 No Content",
+          "status": "No Content",
+          "code": 204,
+          "body": ""
+        }
+      ]
+    }
+  ]
+}

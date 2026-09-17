@@ -1,0 +1,7 @@
+{
+  "name": "Course Management System",
+  "description": "Full-stack academic Course Management System featuring CRUD operations, SQLite database persistence, REST API endpoints, search, filtering, client/server validation, and comprehensive test suite.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
